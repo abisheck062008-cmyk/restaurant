@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5, viewport-fit=cover">
+  <title>Restaurant - Menu & Billing</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="header">
+    <h1>South Indian Restaurant</h1>
+    <nav class="nav-tabs">
+      <button class="tab-btn active" data-tab="menu">Menu</button>
+      <button class="tab-btn" data-tab="cart">Cart & Bill</button>
+      <button class="tab-btn" data-tab="manage">Manage Menu</button>
+      <button class="tab-btn" data-tab="sales">Sales Report</button>
+    </nav>
+  </header>
+
+  <main class="main">
+    <!-- Menu Section -->
+    <section id="menu" class="tab-content active">
+      <h2>Menu</h2>
+      <div id="menu-grid" class="menu-grid"></div>
+    </section>
+
+    <!-- Cart & Bill Section -->
+    <section id="cart" class="tab-content">
+      <h2>Cart & Bill</h2>
+      <div class="cart-container">
+        <div id="cart-items" class="cart-items"></div>
+        <div class="cart-summary">
+          <p class="cart-total">Total: <span id="cart-total">₹0</span></p>
+          <div class="cart-actions">
+            <button id="btn-print-bill" class="btn btn-primary">Print Bill</button>
+            <button id="btn-pay-now" class="btn btn-success">Pay Now</button>
+            <button id="btn-clear-cart" class="btn btn-danger">Clear Cart</button>
+          </div>
+        </div>
+      </div>
+      <div id="cart-empty" class="cart-empty">Your cart is empty. Add items from the Menu.</div>
+    </section>
+
+    <!-- Manage Menu Section -->
+    <section id="manage" class="tab-content">
+      <h2>Manage Menu</h2>
+      <div class="manage-container">
+        <div class="manage-form-panel">
+          <h3 id="form-title">Add Menu Item</h3>
+          <form id="menu-form" class="menu-form">
+            <input type="hidden" id="item-id">
+            <div class="form-group">
+              <label for="item-name">Name</label>
+              <input type="text" id="item-name" required placeholder="e.g. Idly">
+            </div>
+            <div class="form-group">
+              <label for="item-price">Price (₹)</label>
+              <input type="number" id="item-price" required min="0" step="0.01" placeholder="50">
+            </div>
+            <div class="form-group">
+              <label for="item-category">Category</label>
+              <select id="item-category">
+                <option value="Food">Food</option>
+                <option value="Beverage">Beverage</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="item-image">Image</label>
+              <input type="file" id="item-image" accept="image/*">
+              <div id="image-preview" class="image-preview"></div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">Save</button>
+              <button type="button" id="btn-cancel-edit" class="btn btn-secondary">Cancel</button>
+            </div>
+          </form>
+          <div class="payment-config">
+            <h4>Payment QR Code</h4>
+            <div class="form-group">
+              <label for="qr-upload">Upload QR from gallery</label>
+              <input type="file" id="qr-upload" accept="image/*">
+              <div id="qr-preview" class="qr-preview"></div>
+            </div>
+          </div>
+        </div>
+        <div class="manage-list-panel">
+          <div class="menu-table-wrap">
+          <table class="menu-table">
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="menu-table-body"></tbody>
+          </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Monthly Sales Report Section -->
+    <section id="sales" class="tab-content">
+      <h2>Monthly Sales Report</h2>
+      <div id="sales-report" class="sales-report"></div>
+    </section>
+  </main>
+
+  <!-- Pay Now Modal -->
+  <div id="pay-modal" class="modal">
+    <div class="modal-content modal-pay">
+      <span class="modal-close">&times;</span>
+      <h3>Pay Now</h3>
+      <p class="pay-amount">Amount: <strong id="pay-amount-display">₹0</strong></p>
+      <div id="qr-container" class="qr-container">
+        <img id="qr-image" class="qr-image" src="" alt="Payment QR - Long press to save" style="display:none">
+        <p id="qr-fallback" class="qr-fallback" style="display:none">Set UPI ID in Manage Menu to show QR code.</p>
+      </div>
+      <p class="qr-hint">Long-press QR to save. Customer scans to pay.</p>
+      <button id="btn-confirm-pay" class="btn btn-success">Confirm Payment</button>
+    </div>
+  </div>
+
+  <!-- Print Bill (hidden, for print only) -->
+  <div id="print-bill" class="print-bill"></div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/sales.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
