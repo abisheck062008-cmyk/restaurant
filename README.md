@@ -12,9 +12,14 @@ A single-page restaurant ordering and billing system built with HTML, CSS, and J
 
 ## Setup
 
-1. **No server needed**: Double-click `index.html` or open it in a browser. Works on mobile too (open the file or host on any web server).
-2. Set your UPI ID in **Manage Menu** under "Payment (QR Code)" so the Pay Now QR works.
-3. **QR code**: Renders as an image - customers can long-press to save and scan from another phone. Requires internet once to load the QR library.
+1. **No server needed**: Double-click `index.html` or open it in a browser. Works on mobile too.
+2. Upload your payment QR code in **Manage Menu** under "Payment QR Code" (from gallery).
+
+## Deploy to Vercel
+
+1. Push the project to GitHub
+2. Go to [vercel.com](https://vercel.com) and import the repo
+3. Deploy (no build needed - static site)
 
 ## Data
 
